@@ -1,6 +1,7 @@
 from dinic import Graph
 import time
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 vertices = range(5, 101)
@@ -9,12 +10,15 @@ edges = []
 time_results = []
 f = open('results/time.txt', 'w')
 for i in vertices:
-    g = Graph(i)
+    time_i = []
+    for j in range(10):
+        g = Graph(i)
+        start_time = time.time()
+        g.Dinic()
+        work_time = time.time() - start_time
+        time_i.append(work_time * 100)
     edges.append(g.m)
-    start_time = time.time()
-    g.Dinic()
-    work_time = time.time() - start_time
-    time_results.append(work_time * 100)
+    time_results.append(np.array(time_i).mean())
     f.write(str(work_time) + '\n')
 f.close()
 
