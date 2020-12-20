@@ -18,7 +18,8 @@ for i in vertices:
         work_time = time.time() - start_time
         time_i.append(work_time * 100)
     edges.append(g.m)
-    time_results.append(np.array(time_i).mean())
+    work_time = np.array(time_i).mean()
+    time_results.append(work_time)
     f.write(str(work_time) + '\n')
 f.close()
 
